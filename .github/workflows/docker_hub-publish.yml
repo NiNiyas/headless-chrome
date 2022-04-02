@@ -3,7 +3,7 @@ name: Build and Push to Docker Hub
 on: 
   workflow_dispatch:
   repository_dispatch:
-    types: [Build and Push to GHCR]
+    types: [Build and Push to Docker Hub]
   push:
     branches:
       - master
