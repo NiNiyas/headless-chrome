@@ -18,7 +18,7 @@ version: '3.9'
 services:
   headlesschrome:
     container_name: HeadlessShell
-    image: niniyas:headless-shell:latest
+    image: niniyas/headless-shell:latest
     ports:
       - 9222:9222
 ```
