@@ -12,32 +12,30 @@ jobs:
   build-and-push-to-docker-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: benjlevesque/short-sha@v2.2
+      - uses: benjlevesque/short-sha@master
         id: short-sha
         with:
           length: 7
 
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v6.0.2
       - name: Log into Docker Hub
         run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3.0.0
+        uses: docker/setup-qemu-action@v4.0.0
         with:
           image: tonistiigi/binfmt:latest
           platforms: all
 
       - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v3.0.0
+        uses: docker/setup-buildx-action@v4.0.0
         with:
-          install: true
           version: latest
           driver-opts: image=moby/buildkit:master
 
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v7.1.0
         with:
           context: ./
           file: ./Dockerfile
